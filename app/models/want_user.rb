@@ -1,0 +1,2 @@
+class WantUser < Item
+end
