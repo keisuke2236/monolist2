@@ -3,12 +3,11 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show]
 
   def new
+    
     if params[:q]
-      response = RakutenWebService::Ichiba::Item.search(
-        keyword: params[:q],
-        imageFlag: 1,
-      )
+      response = RakutenWebService::Ichiba::Item.search(keyword: params[:q],imageFlag: 1,)
       @items = response.first(20)
+      #binding.pry
     end
   end
 
