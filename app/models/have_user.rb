@@ -1,2 +1,0 @@
-class HaveUser < Item
-end
