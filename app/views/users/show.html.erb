@@ -1,2 +1,4 @@
+<% content_for :title do %><%= "#{@user.name}さんのプロフィール" %><% end %>
+<% content_for :description do %><%= "#{@user.name}さんの欲しいもの，持っているものを紹介しているページです" %><% end %>
 <%= render 'profile' , user: @user %>
 <%= render 'items/list' , items: @items %>
