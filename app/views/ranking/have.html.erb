@@ -11,6 +11,7 @@
     <tbody>
     <% for i in 0..9 %>
       <tr class="thistable">
+        <% break if @rank[i]==nil %>
         <th colspan="2" scope="row"><%= i+1 %>位</th>
         <td colspan="3"><%= @rank[i][1] %>人</td>
         <td colspan="3"><%= Item.find_by(id:@rank[i][0]).title %></td>
