@@ -21,6 +21,7 @@
         </div>
         <div class="action clearfix">
           <% #binding.pry  %>
+          
           <% if(current_user.want?(item)) %>
           <% @itemId = Item.find_by(item_code: item["itemCode"]).id %>
           <%= link_to "" , ownership_path(current_user.wants.find_by(:item_id => @itemId) , item_id: @itemId , type: "Want") ,
@@ -35,7 +36,9 @@
                         :method => :post %>
           <% end %>
           
-          <% if(current_user.have?(item)) %>   
+          <% if(current_user.have?(item)) %>
+          <% @itemId = Item.find_by(item_code: item["itemCode"]).id %>
+          <% #binding.pry %>
           <%= link_to "" , ownership_path( current_user.haves.find_by(:item_id => @itemId) , item_id: @itemId , type: "Have") ,
                       :class => "have-#{@itemId} btn-have btn btn-warning btn-sm have_it",
                       :remote => true,
