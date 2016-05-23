@@ -16,6 +16,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "所持数ランキング", ranking_have_url %></li>
+            <li><%= link_to "欲しいものランキング", ranking_want_url %></li>
             <% unless logged_in? %>
               <li><%= link_to "新規登録", signup_path %></li>
               <li><%= link_to "ログイン", login_path %></li>
