@@ -1,9 +1,13 @@
+<% @item = Item.find_by(id: params["id"]) %>
+<% content_for :title do %><%= "#{@item.title}-monolist" %><% end %>
+<% content_for :description do %><%= "このページは#{@item.title}のページです" %><% end %>
 <div class="container">
   <div class="container-inner inner-sm clearfix">
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
-        <% #binding.pry %>
+          <% #binding.pry %>
+        
           <% if(@item.large_image!=nil) %>
             <%= image_tag(@item.large_image , alt: @item.title) %>
           <% else %>
@@ -20,23 +24,22 @@
       <div class="side-box">
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
-          <% #binding.pry %>
-          <% for i in 0..@item.have_users.length %>
-            <%= gravatar_for @item.have_users[i], size: 100 %>
+          
+          <% for i in 0..@item.have_users.length-1 %>
+            <%= link_to gravatar_for(@item.have_users[i], size: 50), @item.have_users[i] %>
           <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
-            <%= @item.have_users.each {|usr| 
-              usr.name            
-            } %>
+          <% for i in 0..@item.want_users.length-1 %>
+            <%= link_to gravatar_for(@item.want_users[i], size: 50), @item.want_users[i] %>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
-        <% #TODO 正しいリンク先に %>
-        <%= link_to('楽天詳細ページへ', '#') %>
+        <%= link_to('楽天詳細ページへ', @item.detail_page_url) %>
       </div>
     </div>
   </div>
