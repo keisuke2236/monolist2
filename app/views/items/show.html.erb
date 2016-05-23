@@ -3,9 +3,12 @@
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
-          <% binding.pry %>
-          <% #TODO 商品イメージ %>
-          <%= image_tag("no-image.png" , alt: @item.title) %>
+        <% #binding.pry %>
+          <% if(@item.large_image!=nil) %>
+            <%= image_tag(@item.large_image , alt: @item.title) %>
+          <% else %>
+            <%= image_tag("no-image.png" , alt: @item.title) %>
+          <% end %>
         </div>
       </div>
       <div class="title">
@@ -17,14 +20,18 @@
       <div class="side-box">
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
-          <%= @item.have_users %>
-
+          <% #binding.pry %>
+          <% for i in 0..@item.have_users.length %>
+            <%= gravatar_for @item.have_users[i], size: 100 %>
+          <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
-          <%= @item.want_users %>
+            <%= @item.have_users.each {|usr| 
+              usr.name            
+            } %>
         </div>
       </div>
       <div class="text-center">
