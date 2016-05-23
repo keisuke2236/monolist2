@@ -1,12 +1,19 @@
 <div class="action">
-  <% if current_user.want? item %>
-    <%= render 'items/unwant' , item: item %>
+  <% @itemId = Item.find_by(item_code: item[:item_code]).id %>
+  <% if(current_user.want_items.find_by(item_code: item["item_code"])!=nil) %>
+              <%= link_to "" , ownership_path(current_user.wants.find_by(:item_id => @itemId) , item_id: @itemId , type: "Want") ,
+                        :class => "want-#{@itemId} btn-want btn btn-danger btn-sm want_it",
+                        :remote => true,
+                        :method => :delete %>
   <% else %>
     <%= render 'items/want' , item: item %>
   <% end %> 
 
-  <% if current_user.have? item %>
-    <%= render 'items/unhave' , item: item %>
+  <% if(current_user.have_items.find_by(item_code: item["item_code"])!=nil) %> 
+              <%= link_to "" , ownership_path( current_user.haves.find_by(:item_id => @itemId) , item_id: @itemId , type: "Have") ,
+                      :class => "have-#{@itemId} btn-have btn btn-warning btn-sm have_it",
+                      :remote => true,
+                      :method => :delete %> 
   <% else %>
     <%= render 'items/have' , item: item %>
   <% end %>
