@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   def new
     if params[:q]
       response = RakutenWebService::Ichiba::Item.search(keyword: params[:q],imageFlag: 1,)
-      @items = response.first(10)
+      @items = response.first(20)
       #binding.pry
     end
   end

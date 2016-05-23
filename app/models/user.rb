@@ -30,27 +30,6 @@ class User < ActiveRecord::Base
   has_many :wants, class_name: "Want", foreign_key: "user_id", dependent: :destroy
   has_many :want_items , through: :wants, source: :item
 
-  #	itemをwantする。
-  def want(item)
-    following_relationships.find_or_create_by(followed_id: item.id)
-  end
-  
-  def want?(item)
-    following_users.include?(item)
-  end
-  
-  def unwant(item)
-    following_relationships = following_relationships.find_by(followed_id: item.id)
-  end
-  
-  def have(item)
-  end
-  def have?(item)
-  end
-  def unhave(item)
-  end
-
-
 
   # 他のユーザーをフォローする
   def follow(other_user)
